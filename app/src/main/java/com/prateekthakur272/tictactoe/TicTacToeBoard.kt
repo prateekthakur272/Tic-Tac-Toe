@@ -1,12 +1,9 @@
 package com.prateekthakur272.tictactoe
 
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 
 class TicTacToeBoard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,54 +19,76 @@ class TicTacToeBoard : AppCompatActivity() {
         val mark7:ImageView = findViewById(R.id.mark7)
         val mark8:ImageView = findViewById(R.id.mark8)
         val resetButton:Button = findViewById(R.id.reset)
-        val message:TextView = findViewById(R.id.message)
+        var game: TicTacToe = TicTacToe()
 
-        var currentMark:Int = R.drawable.x_mark
-
+        fun checkWinner(){
+            val winner:Int
+            if (game.isWinner()) {
+                winner = if (game.current == R.drawable.x_mark) R.drawable.o_mark else R.drawable.x_mark
+                mark0.setImageResource(winner)
+                mark1.setImageResource(winner)
+                mark2.setImageResource(winner)
+                mark3.setImageResource(winner)
+                mark4.setImageResource(winner)
+                mark5.setImageResource(winner)
+                mark6.setImageResource(winner)
+                mark7.setImageResource(winner)
+                mark8.setImageResource(winner)
+            }
+        }
         mark0.setOnClickListener {
-            mark0.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark0.setImageResource(game.current)
+            game.mark(0)
             mark0.isClickable = false
+            checkWinner()
         }
         mark1.setOnClickListener {
-            mark1.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark1.setImageResource(game.current)
+            game.mark(1)
             mark1.isClickable = false
+            checkWinner()
         }
         mark2.setOnClickListener {
-            mark2.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark2.setImageResource(game.current)
+            game.mark(2)
             mark2.isClickable = false
+            checkWinner()
         }
         mark3.setOnClickListener {
-            mark3.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark3.setImageResource(game.current)
+            game.mark(3)
             mark3.isClickable = false
+            checkWinner()
         }
         mark4.setOnClickListener {
-            mark4.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark4.setImageResource(game.current)
+            game.mark(4)
             mark4.isClickable = false
+            checkWinner()
         }
         mark5.setOnClickListener {
-            mark5.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark5.setImageResource(game.current)
+            game.mark(5)
             mark5.isClickable = false
+            checkWinner()
         }
         mark6.setOnClickListener {
-            mark6.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark6.setImageResource(game.current)
+            game.mark(6)
             mark6.isClickable = false
+            checkWinner()
         }
         mark7.setOnClickListener {
-            mark7.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark7.setImageResource(game.current)
+            game.mark(7)
             mark7.isClickable = false
+            checkWinner()
         }
         mark8.setOnClickListener {
-            mark8.setImageResource(currentMark)
-            currentMark = getNextMarker(currentMark)
+            mark8.setImageResource(game.current)
+            game.mark(8)
             mark8.isClickable = false
+            checkWinner()
         }
         fun reset(){
             mark0.setImageDrawable(null)
@@ -90,15 +109,10 @@ class TicTacToeBoard : AppCompatActivity() {
             mark7.isClickable = true
             mark8.setImageDrawable(null)
             mark8.isClickable = true
-            currentMark = R.drawable.x_mark
+            game = TicTacToe()
         }
         resetButton.setOnClickListener {
             reset()
         }
-    }
-    fun getNextMarker(currentMark:Int):Int{
-        if(currentMark == R.drawable.x_mark)
-            return R.drawable.o_mark
-        return R.drawable.x_mark
     }
 }
