@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 
-class TicTacToeBoard : AppCompatActivity() {
+class TicTacToeComputerBoard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tic_tac_toe_board)
@@ -18,13 +19,13 @@ class TicTacToeBoard : AppCompatActivity() {
         val mark6:ImageView = findViewById(R.id.mark6)
         val mark7:ImageView = findViewById(R.id.mark7)
         val mark8:ImageView = findViewById(R.id.mark8)
-        val resetButton:Button = findViewById(R.id.reset)
-        var game: TicTacToe = TicTacToe()
+        val resetButton: Button = findViewById(R.id.reset)
+        var game = TicTacToeComputer()
 
         fun checkWinner(){
             val winner:Int
             if (game.isWinner()) {
-                winner = if (game.current == R.drawable.x_mark) R.drawable.o_mark else R.drawable.x_mark
+                winner =  game.lastMark
                 mark0.setImageResource(winner)
                 mark0.isClickable =false
                 mark1.setImageResource(winner)
@@ -45,59 +46,139 @@ class TicTacToeBoard : AppCompatActivity() {
                 mark8.isClickable =false
             }
         }
+
+        fun computerMark(){
+            val computerMark = game.mark()
+            if (computerMark != -1) {
+                when (computerMark) {
+                    0 -> {
+                        mark0.setImageResource(R.drawable.o_mark)
+                        mark0.isClickable = false
+                    }
+                    1 -> {
+                        mark1.setImageResource(R.drawable.o_mark)
+                        mark1.isClickable = false
+                    }
+                    2 -> {
+                        mark2.setImageResource(R.drawable.o_mark)
+                        mark2.isClickable = false
+                    }
+                    3 -> {
+                        mark3.setImageResource(R.drawable.o_mark)
+                        mark3.isClickable = false
+                    }
+                    4 -> {
+                        mark4.setImageResource(R.drawable.o_mark)
+                        mark4.isClickable = false
+                    }
+                    5 -> {
+                        mark5.setImageResource(R.drawable.o_mark)
+                        mark5.isClickable = false
+                    }
+                    6 -> {
+                        mark6.setImageResource(R.drawable.o_mark)
+                        mark6.isClickable = false
+                    }
+                    7 -> {
+                        mark7.setImageResource(R.drawable.o_mark)
+                        mark7.isClickable = false
+                    }
+                    8 -> {
+                        mark8.setImageResource(R.drawable.o_mark)
+                        mark8.isClickable = false
+                    }
+                }
+            }
+        }
         mark0.setOnClickListener {
-            mark0.setImageResource(game.current)
+            mark0.setImageResource(R.drawable.x_mark)
             game.mark(0)
             mark0.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark1.setOnClickListener {
-            mark1.setImageResource(game.current)
+            mark1.setImageResource(R.drawable.x_mark)
             game.mark(1)
             mark1.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark2.setOnClickListener {
-            mark2.setImageResource(game.current)
+            mark2.setImageResource(R.drawable.x_mark)
             game.mark(2)
             mark2.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark3.setOnClickListener {
-            mark3.setImageResource(game.current)
+            mark3.setImageResource(R.drawable.x_mark)
             game.mark(3)
             mark3.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark4.setOnClickListener {
-            mark4.setImageResource(game.current)
+            mark4.setImageResource(R.drawable.x_mark)
             game.mark(4)
             mark4.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark5.setOnClickListener {
-            mark5.setImageResource(game.current)
+            mark5.setImageResource(R.drawable.x_mark)
             game.mark(5)
             mark5.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark6.setOnClickListener {
-            mark6.setImageResource(game.current)
+            mark6.setImageResource(R.drawable.x_mark)
             game.mark(6)
             mark6.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark7.setOnClickListener {
-            mark7.setImageResource(game.current)
+            mark7.setImageResource(R.drawable.x_mark)
             game.mark(7)
             mark7.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         mark8.setOnClickListener {
-            mark8.setImageResource(game.current)
+            mark8.setImageResource(R.drawable.x_mark)
             game.mark(8)
             mark8.isClickable = false
             checkWinner()
+            if (!game.isWinner()){
+                computerMark()
+                checkWinner()
+            }
         }
         fun reset(){
             mark0.setImageDrawable(null)
@@ -118,7 +199,7 @@ class TicTacToeBoard : AppCompatActivity() {
             mark7.isClickable = true
             mark8.setImageDrawable(null)
             mark8.isClickable = true
-            game = TicTacToe()
+            game = TicTacToeComputer()
         }
         resetButton.setOnClickListener {
             reset()

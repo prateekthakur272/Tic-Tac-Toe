@@ -3,10 +3,10 @@ package com.prateekthakur272.tictactoe
 import android.graphics.drawable.Drawable
 import kotlin.experimental.and
 
-class TicTacToe {
-    private val boardArray:Array<Int> = arrayOf(0,0,0,0,0,0,0,0,0)
-    var current = R.drawable.x_mark
-    fun mark(pos: Int){
+open class TicTacToe {
+    protected val boardArray:Array<Int> = arrayOf(0,0,0,0,0,0,0,0,0)
+    open var current = R.drawable.x_mark
+    open fun mark(pos: Int){
         if (pos<=8)
             if (boardArray[pos] == 0) {
                 boardArray[pos] = current
